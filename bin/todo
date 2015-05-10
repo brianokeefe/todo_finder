@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require 'todo_finder'
+
+dir = ARGV.first || '.'
+TodoFinder::Finder.new.find(dir).output
