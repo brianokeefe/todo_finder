@@ -2,6 +2,8 @@
 
 A simple command line tool for finding TODOs in a codebase and outputting them in a clean, readable way.
 
+It's pretty rough. It could be a grep for sure. Do I care? Nahhhh.
+
 I'm sorry.
 
 ## Installation
