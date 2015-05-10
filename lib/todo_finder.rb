@@ -14,7 +14,7 @@ module TodoFinder
       all_files = Dir[full_dir].reject { |file| File.directory? file }
 
       all_files.each do |file_name|
-        File.open file_name do |file|
+        File.open(file_name, :encoding => 'ISO-8859-1') do |file|
           file.each_line do |line|
             @matches[file_name] << line if line =~ /TODO/
           end
