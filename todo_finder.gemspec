@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = TodoFinder::VERSION
   spec.authors       = ["Brian O'Keefe"]
   spec.email         = ["brian@bokstuff.com"]
-  spec.summary       = %q{A simple command line tool for finding TODOs in a codebase and outputting them in a clean, readable way.}
+  spec.summary       = %q{A simple command line tool for finding todos in a codebase and outputting them in a clean, readable way.}
   spec.description   = spec.summary
   spec.homepage      = "https://github.com/brianokeefe/todo_finder"
   spec.license       = "MIT"
