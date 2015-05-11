@@ -5,6 +5,8 @@ module TodoFinder
   class Finder
     attr_accessor :matches
 
+    TODO_REGEX = /(\*|\/\/|#)\s*\[?todo(\]|:| \-)\s+/i
+
     def initialize
       @matches = Hash.new { |h,k| h[k]=[] }
     end
@@ -17,7 +19,7 @@ module TodoFinder
       all_files.each do |file_name|
         File.open(file_name, :encoding => 'ISO-8859-1') do |file|
           file.each_with_index do |line, i|
-            @matches[file_name] << [i + 1, line] if line =~ /TODO/
+            @matches[file_name] << [i + 1, line] if line =~ TODO_REGEX
           end
         end
       end
@@ -33,7 +35,7 @@ module TodoFinder
 
         lines.each do |i, line|
           line_num = i.to_s.green
-          formatted_line = line.sub(/(\*|\/\/|#)\s+?TODO:/, '')
+          formatted_line = line.sub(TODO_REGEX, '')
           puts "  - [#{line_num}] " << formatted_line.strip
         end
 
