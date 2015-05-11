@@ -28,7 +28,7 @@ module TodoFinder
     # Pretty output
     def output
       @matches.each do |file, lines|
-        file_name = file.sub(Dir.pwd, '')
+        file_name = '.' << file.sub(Dir.pwd, '')
         puts file_name.yellow
 
         lines.each do |i, line|
