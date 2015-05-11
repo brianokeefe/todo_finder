@@ -16,8 +16,8 @@ module TodoFinder
 
       all_files.each do |file_name|
         File.open(file_name, :encoding => 'ISO-8859-1') do |file|
-          file.each_line do |line|
-            @matches[file_name] << line if line =~ /TODO/
+          file.each_with_index do |line, i|
+            @matches[file_name] << [i + 1, line] if line =~ /TODO/
           end
         end
       end
@@ -31,9 +31,10 @@ module TodoFinder
         file_name = file.sub(Dir.pwd, '')
         puts file_name.yellow
 
-        lines.each do |line|
+        lines.each do |i, line|
+          line_num = i.to_s.green
           formatted_line = line.sub(/(\*|\/\/|#)\s+?TODO:/, '')
-          puts '  - ' << formatted_line.strip
+          puts "  - [#{line_num}] " << formatted_line.strip
         end
 
         puts ''
