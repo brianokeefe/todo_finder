@@ -1,3 +1,4 @@
+require 'colorize'
 require 'todo_finder/version'
 
 module TodoFinder
@@ -27,11 +28,12 @@ module TodoFinder
     # Pretty output
     def output
       @matches.each do |file, lines|
-        file_name = file.gsub(Dir.pwd, '')
-        puts file_name
+        file_name = file.sub(Dir.pwd, '')
+        puts file_name.yellow
 
         lines.each do |line|
-          puts '  - ' << line.strip
+          formatted_line = line.sub(/(\*|\/\/|#)\s+?TODO:/, '')
+          puts '  - ' << formatted_line.strip
         end
 
         puts ''
