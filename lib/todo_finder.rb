@@ -5,7 +5,7 @@ module TodoFinder
   class Finder
     attr_accessor :matches
 
-    TODO_REGEX = /(\*|\/\/|#)\s*\[?todo(\]|:| \-)\s+/i
+    TODO_REGEX = /(\*|\/\/|#)\s*\[?todo(\]|:| \-)\s+(.+)/i
 
     def initialize
       @matches = Hash.new { |h,k| h[k]=[] }
@@ -35,7 +35,7 @@ module TodoFinder
 
         lines.each do |i, line|
           line_num = i.to_s.green
-          formatted_line = line.sub(TODO_REGEX, '')
+          formatted_line = line.match(TODO_REGEX).captures.last
           puts "  - [#{line_num}] " << formatted_line.strip
         end
 
